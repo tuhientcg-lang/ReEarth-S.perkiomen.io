@@ -7,7 +7,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --green-deep:   #1a3d2b;
       --green-mid:    #2d6a4f;
@@ -27,9 +26,7 @@
       --radius-lg: 32px;
       --radius-xl: 48px;
     }
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--cream);
@@ -38,648 +35,131 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    /* ── LOGO CORE STYLING ── */
+    .logo-main {
+      height: 45px;
+      width: auto;
+      /* This removes the black background from your JPEG so it looks transparent */
+      mix-blend-mode: multiply; 
+      display: block;
+    }
+    
+    .logo-hero {
+      height: 140px;
+      margin: 0 auto 20px;
+      mix-blend-mode: multiply;
+      animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    }
+
+    .logo-footer {
+      height: 70px;
+      /* Inverting colors for the dark footer so the logo pops */
+      filter: brightness(0) invert(1);
+      mix-blend-mode: lighten;
+    }
+
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 48px;
+      padding: 12px 48px;
       background: rgba(253,252,247,0.85);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(64,145,108,0.12);
-      transition: box-shadow 0.3s;
+      transition: all 0.3s;
     }
-    nav.scrolled { box-shadow: var(--shadow-sm); }
-
-    .nav-logo {
-      display: flex; align-items: center; gap: 10px;
-      text-decoration: none;
-    }
-    .nav-logo-icon {
-      width: 36px; height: 36px;
-      background: linear-gradient(135deg, var(--green-mid), var(--green-bright));
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
-      box-shadow: 0 4px 12px rgba(45,106,79,0.35);
-    }
-    .nav-logo-text {
-      font-family: 'Fraunces', serif;
-      font-weight: 800;
-      font-size: 1.25rem;
-      color: var(--green-deep);
-      letter-spacing: -0.02em;
-    }
-
-    .nav-links {
-      display: flex; align-items: center; gap: 36px;
-      list-style: none;
-    }
+    nav.scrolled { padding: 8px 48px; box-shadow: var(--shadow-sm); }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
     .nav-links a {
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--muted);
-      letter-spacing: 0.01em;
-      transition: color 0.2s;
+      text-decoration: none; font-size: 0.9rem; font-weight: 500;
+      color: var(--muted); transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--green-mid); }
 
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 28px;
-      border-radius: 999px;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 600;
-      font-size: 0.9rem;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-      border: none; outline: none;
+      padding: 12px 28px; border-radius: 999px;
+      font-weight: 600; font-size: 0.9rem; cursor: pointer;
+      text-decoration: none; transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: none;
     }
     .btn-primary {
       background: linear-gradient(135deg, var(--green-mid) 0%, var(--green-bright) 100%);
-      color: var(--white);
-      box-shadow: 0 6px 20px rgba(45,106,79,0.4);
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 10px 28px rgba(45,106,79,0.5);
+      color: var(--white); box-shadow: 0 6px 20px rgba(45,106,79,0.4);
     }
     .btn-outline {
-      background: transparent;
-      color: var(--green-mid);
-      border: 2px solid var(--green-light);
-    }
-    .btn-outline:hover {
-      background: var(--green-pale);
-      border-color: var(--green-mid);
-      transform: translateY(-2px);
-    }
-    .btn-white {
-      background: var(--white);
-      color: var(--green-deep);
-      box-shadow: var(--shadow-md);
-    }
-    .btn-white:hover {
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: var(--shadow-lg);
+      background: transparent; color: var(--green-mid); border: 2px solid var(--green-light);
     }
     .btn-lg { padding: 16px 40px; font-size: 1rem; }
 
     /* ── HERO ── */
     #hero {
-      min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden;
-      padding: 120px 24px 80px;
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden; padding: 140px 24px 80px;
     }
-
-    .hero-bg {
-      position: absolute; inset: 0; z-index: 0;
-      background:
-        radial-gradient(ellipse 80% 70% at 60% 40%, rgba(116,198,157,0.18) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 50% at 10% 80%, rgba(45,106,79,0.12) 0%, transparent 50%),
-        radial-gradient(ellipse 60% 60% at 90% 10%, rgba(216,243,220,0.5) 0%, transparent 55%),
-        var(--cream);
-    }
-
-    /* Floating blobs */
-    .blob {
-      position: absolute; border-radius: 50%;
-      filter: blur(60px); pointer-events: none; z-index: 0;
-      animation: blobFloat 8s ease-in-out infinite;
-    }
-    .blob-1 {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(116,198,157,0.25), transparent 70%);
-      top: -100px; right: -100px;
-      animation-delay: 0s;
-    }
-    .blob-2 {
-      width: 350px; height: 350px;
-      background: radial-gradient(circle, rgba(45,106,79,0.15), transparent 70%);
-      bottom: 50px; left: -80px;
-      animation-delay: 3s;
-    }
-    .blob-3 {
-      width: 250px; height: 250px;
-      background: radial-gradient(circle, rgba(216,243,220,0.6), transparent 70%);
-      top: 40%; left: 30%;
-      animation-delay: 5s;
-    }
-    @keyframes blobFloat {
-      0%, 100% { transform: translateY(0px) scale(1); }
-      50% { transform: translateY(-30px) scale(1.05); }
-    }
-
-    /* Decorative circles */
-    .deco-ring {
-      position: absolute; border-radius: 50%; pointer-events: none; z-index: 0;
-      border: 1.5px solid rgba(45,106,79,0.1);
-      animation: ringPulse 6s ease-in-out infinite;
-    }
-    @keyframes ringPulse {
-      0%, 100% { transform: scale(1); opacity: 0.6; }
-      50% { transform: scale(1.04); opacity: 0.3; }
-    }
-
-    .hero-content {
-      position: relative; z-index: 1;
-      text-align: center; max-width: 800px;
-    }
-
+    .hero-bg { position: absolute; inset: 0; z-index: 0; background: var(--cream); }
+    .hero-content { position: relative; z-index: 1; text-align: center; max-width: 850px; }
+    
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      background: var(--white);
-      border: 1px solid rgba(45,106,79,0.2);
-      border-radius: 999px;
-      padding: 8px 18px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--green-mid);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 32px;
-      box-shadow: var(--shadow-sm);
-      animation: fadeUp 0.6s ease both;
+      background: var(--white); border: 1px solid rgba(45,106,79,0.2);
+      border-radius: 999px; padding: 8px 18px; font-size: 0.8rem;
+      font-weight: 600; color: var(--green-mid); margin-bottom: 24px;
+      box-shadow: var(--shadow-sm); animation: fadeUp 0.6s 0.2s ease both;
     }
     .hero-badge-dot {
-      width: 7px; height: 7px;
-      background: var(--green-bright);
-      border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
+      width: 7px; height: 7px; background: var(--green-bright); border-radius: 50%;
+      animation: pulse 2s infinite;
     }
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(64,145,108,0.5); }
-      50% { box-shadow: 0 0 0 6px rgba(64,145,108,0); }
-    }
+    @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(64,145,108,0.5); } 50% { box-shadow: 0 0 0 6px rgba(64,145,108,0); } }
 
     .hero-title {
-      font-family: 'Fraunces', serif;
-      font-weight: 800;
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      color: var(--green-deep);
-      margin-bottom: 24px;
-      animation: fadeUp 0.6s 0.1s ease both;
+      font-family: 'Fraunces', serif; font-weight: 800;
+      font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1;
+      color: var(--green-deep); margin-bottom: 24px; animation: fadeUp 0.6s 0.3s ease both;
     }
-    .hero-title .accent {
-      color: var(--green-bright);
-      font-style: italic;
-      position: relative;
-    }
-    .hero-title .accent::after {
-      content: '';
-      position: absolute;
-      bottom: 4px; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--green-light), transparent);
-      border-radius: 2px;
-    }
-
     .hero-subtitle {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      color: var(--muted);
-      font-weight: 400;
-      line-height: 1.6;
-      margin-bottom: 48px;
-      letter-spacing: 0.02em;
-      animation: fadeUp 0.6s 0.2s ease both;
+      font-size: 1.2rem; color: var(--muted); margin-bottom: 40px;
+      animation: fadeUp 0.6s 0.4s ease both;
     }
+    .hero-cta { display: flex; gap: 16px; justify-content: center; animation: fadeUp 0.6s 0.5s ease both; }
 
-    .hero-cta {
-      display: flex; align-items: center; justify-content: center;
-      gap: 16px; flex-wrap: wrap;
-      animation: fadeUp 0.6s 0.3s ease both;
-    }
-
-    .hero-scroll-hint {
-      position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
-      z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 8px;
-      color: var(--muted); font-size: 0.75rem; font-weight: 500;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      animation: fadeUp 1s 0.8s ease both;
-    }
-    .scroll-line {
-      width: 1px; height: 40px;
-      background: linear-gradient(to bottom, var(--green-light), transparent);
-      animation: scrollDrop 2s ease-in-out infinite;
-    }
-    @keyframes scrollDrop {
-      0% { transform: scaleY(0); transform-origin: top; }
-      50% { transform: scaleY(1); transform-origin: top; }
-      51% { transform: scaleY(1); transform-origin: bottom; }
-      100% { transform: scaleY(0); transform-origin: bottom; }
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── SECTIONS COMMON ── */
+    /* ── SECTIONS ── */
     section { padding: 100px 24px; }
-
     .container { max-width: 1100px; margin: 0 auto; }
+    .section-eyebrow { font-size: 0.75rem; font-weight: 700; color: var(--green-bright); text-transform: uppercase; margin-bottom: 12px; display: block; }
+    .section-title { font-family: 'Fraunces', serif; font-size: 2.5rem; color: var(--green-deep); margin-bottom: 20px; }
 
-    .section-eyebrow {
-      display: inline-block;
-      font-size: 0.75rem; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--green-bright);
-      margin-bottom: 16px;
-    }
-    .section-title {
-      font-family: 'Fraunces', serif;
-      font-weight: 800; font-size: clamp(2rem, 4vw, 3rem);
-      color: var(--green-deep); line-height: 1.15;
-      letter-spacing: -0.025em;
-      margin-bottom: 16px;
-    }
-    .section-subtitle {
-      font-size: 1.05rem; color: var(--muted);
-      line-height: 1.65; max-width: 560px;
-    }
-
-    /* ── MAP SECTION ── */
-    #map {
-      background: var(--green-wash);
-      padding: 80px 0 0;
-    }
-    .map-header {
-      padding: 0 24px 48px;
-      text-align: center;
-    }
-    .map-header .section-subtitle { margin: 0 auto; }
-
-    .map-wrapper {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      background: var(--green-deep);
-    }
-    .map-wrapper::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 4px;
-      background: linear-gradient(90deg, var(--green-bright), var(--green-light), var(--green-bright));
-      z-index: 2;
-    }
-    .map-wrapper iframe {
-      display: block;
-      width: 100%; height: 560px;
-      border: none;
-    }
-
-    .map-caption {
-      background: var(--green-deep);
-      display: flex; align-items: center; justify-content: center; gap: 24px;
-      padding: 20px 24px; flex-wrap: wrap;
-    }
-    .map-legend-item {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.7);
-    }
-    .legend-dot {
-      width: 10px; height: 10px; border-radius: 50%;
-      flex-shrink: 0;
-    }
+    /* ── MAP ── */
+    #map { background: var(--green-wash); padding: 80px 0 0; text-align: center; }
+    .map-wrapper { width: 100%; height: 500px; background: #eee; margin-top: 40px; }
+    .map-wrapper iframe { width: 100%; height: 100%; border: none; }
 
     /* ── FEATURES ── */
-    #features { background: var(--cream); }
-
-    .features-header {
-      text-align: center; margin-bottom: 64px;
-    }
-    .features-header .section-subtitle { margin: 0 auto; }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 28px;
-    }
-
-    .feature-card {
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      padding: 48px 40px;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid rgba(45,106,79,0.08);
-      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-      position: relative; overflow: hidden;
-    }
-    .feature-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--green-bright), var(--green-light));
-      opacity: 0; transition: opacity 0.3s;
-    }
-    .feature-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-lg);
-      border-color: rgba(45,106,79,0.15);
-    }
-    .feature-card:hover::before { opacity: 1; }
-
-    .feature-icon-wrap {
-      width: 60px; height: 60px;
-      border-radius: 18px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 28px; margin-bottom: 28px;
-      position: relative; z-index: 1;
-    }
-    .fi-green { background: linear-gradient(135deg, #e8f7ef, #c8ead9); }
-    .fi-teal  { background: linear-gradient(135deg, #e0f4ef, #b8e8d8); }
-    .fi-lime  { background: linear-gradient(135deg, #f0f7e0, #daedb8); }
-
-    .feature-card h3 {
-      font-family: 'Fraunces', serif;
-      font-weight: 700; font-size: 1.3rem;
-      color: var(--green-deep);
-      letter-spacing: -0.01em;
-      margin-bottom: 12px;
-    }
-    .feature-card p {
-      font-size: 0.95rem; color: var(--muted);
-      line-height: 1.65;
-    }
-
-    .feature-tag {
-      display: inline-block;
-      margin-top: 20px;
-      font-size: 0.75rem; font-weight: 700;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--green-bright);
-      background: var(--green-pale);
-      padding: 4px 12px; border-radius: 999px;
-    }
-
-    /* ── HOW IT WORKS ── */
-    #how {
-      background: linear-gradient(160deg, var(--green-deep) 0%, #1e4d38 100%);
-      position: relative; overflow: hidden;
-    }
-    #how::before {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 60% 80% at 80% 20%, rgba(116,198,157,0.12) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 60% at 10% 90%, rgba(45,106,79,0.3) 0%, transparent 50%);
-    }
-
-    .how-header {
-      text-align: center; margin-bottom: 80px; position: relative; z-index: 1;
-    }
-    .how-header .section-eyebrow { color: var(--green-light); }
-    .how-header .section-title { color: var(--white); }
-
-    .steps-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      position: relative; z-index: 1;
-    }
-
-    .steps-row::before {
-      content: '';
-      position: absolute;
-      top: 38px; left: calc(16.67% + 12px); right: calc(16.67% + 12px);
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--green-light), var(--green-bright), var(--green-light), transparent);
-      opacity: 0.5;
-    }
-
-    .step {
-      display: flex; flex-direction: column; align-items: center;
-      text-align: center; padding: 0 32px;
-    }
-
-    .step-num {
-      width: 76px; height: 76px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--green-bright), var(--green-light));
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Fraunces', serif;
-      font-weight: 800; font-size: 1.6rem;
-      color: var(--white);
-      margin-bottom: 28px;
-      box-shadow: 0 0 0 8px rgba(116,198,157,0.1), 0 8px 24px rgba(0,0,0,0.25);
-      position: relative; z-index: 1;
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .step:hover .step-num { transform: scale(1.1); }
-
-    .step-icon {
-      font-size: 2rem; margin-bottom: 16px;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
-    }
-
-    .step h3 {
-      font-family: 'Fraunces', serif;
-      font-weight: 700; font-size: 1.2rem;
-      color: var(--white); margin-bottom: 12px;
-      letter-spacing: -0.01em;
-    }
-    .step p {
-      font-size: 0.9rem; color: rgba(255,255,255,0.55);
-      line-height: 1.65;
-    }
-
-    /* ── IMPACT / STATS ── */
-    #impact { background: var(--green-wash); }
-
-    .impact-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px; align-items: center;
-    }
-
-    .impact-text .section-subtitle { margin-bottom: 36px; }
-
-    .coming-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: linear-gradient(135deg, var(--green-pale), #c3e6cb);
-      border: 1px solid rgba(45,106,79,0.2);
-      border-radius: 999px;
-      padding: 10px 20px;
-      font-size: 0.85rem; font-weight: 600;
-      color: var(--green-mid);
-    }
-    .coming-badge-icon { font-size: 1rem; }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .stat-card {
-      background: var(--white);
-      border-radius: var(--radius-md);
-      padding: 32px 28px;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid rgba(45,106,79,0.08);
-      transition: all 0.3s ease;
-      position: relative; overflow: hidden;
-    }
-    .stat-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0; height: 3px;
-      border-radius: 0 0 var(--radius-md) var(--radius-md);
-    }
-    .stat-card.sc-1::after { background: linear-gradient(90deg, #40916c, #74c69d); }
-    .stat-card.sc-2::after { background: linear-gradient(90deg, #52b788, #b7e4c7); }
-    .stat-card.sc-3::after { background: linear-gradient(90deg, #2d6a4f, #40916c); }
-    .stat-card.sc-4::after { background: linear-gradient(90deg, #74c69d, #d8f3dc); }
-
-    .stat-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .stat-number {
-      font-family: 'Fraunces', serif;
-      font-weight: 800; font-size: 2.2rem;
-      color: var(--green-deep);
-      letter-spacing: -0.03em;
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-    .stat-label {
-      font-size: 0.85rem; font-weight: 500;
-      color: var(--muted); line-height: 1.4;
-    }
-    .stat-icon { font-size: 1.6rem; margin-bottom: 14px; }
-    .stat-note {
-      font-size: 0.72rem; font-weight: 600;
-      color: var(--green-bright); letter-spacing: 0.06em;
-      text-transform: uppercase; margin-top: 8px;
-    }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
+    .feature-card { background: var(--white); padding: 40px; border-radius: var(--radius-lg); border: 1px solid rgba(0,0,0,0.05); transition: 0.3s; }
+    .feature-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
 
     /* ── FOOTER ── */
-    footer {
-      background: var(--green-deep);
-      padding: 60px 24px 40px;
-      position: relative; overflow: hidden;
-    }
-    footer::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--green-light), transparent);
-      opacity: 0.3;
-    }
+    footer { background: var(--green-deep); padding: 80px 24px 40px; color: var(--white); text-align: center; }
+    .footer-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 40px 0; width: 100%; }
 
-    .footer-inner {
-      max-width: 1100px; margin: 0 auto;
-      display: flex; flex-direction: column; align-items: center;
-      gap: 32px; text-align: center;
-    }
-
-    .footer-logo {
-      display: flex; align-items: center; gap: 12px;
-    }
-    .footer-logo-icon {
-      width: 42px; height: 42px;
-      background: linear-gradient(135deg, var(--green-bright), var(--green-light));
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px;
-    }
-    .footer-logo-text {
-      font-family: 'Fraunces', serif;
-      font-weight: 800; font-size: 1.4rem;
-      color: var(--white);
-    }
-
-    .footer-nav {
-      display: flex; gap: 32px; flex-wrap: wrap; justify-content: center;
-      list-style: none;
-    }
-    .footer-nav a {
-      text-decoration: none;
-      font-size: 0.85rem; font-weight: 500;
-      color: rgba(255,255,255,0.5);
-      transition: color 0.2s;
-    }
-    .footer-nav a:hover { color: var(--green-light); }
-
-    .footer-divider {
-      width: 100%; height: 1px;
-      background: rgba(255,255,255,0.08);
-    }
-
-    .footer-bottom {
-      display: flex; align-items: center; justify-content: space-between;
-      width: 100%; flex-wrap: wrap; gap: 12px;
-    }
-    .footer-credit {
-      font-size: 0.8rem; color: rgba(255,255,255,0.4);
-    }
-    .footer-credit strong { color: rgba(255,255,255,0.65); font-weight: 600; }
-
-    .footer-school {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 0.8rem; color: rgba(255,255,255,0.4);
-    }
-    .footer-school span { color: var(--green-light); font-weight: 600; }
-
-    /* ── SCROLL ANIMATIONS ── */
-    .reveal {
-      opacity: 0; transform: translateY(40px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal-left.visible { opacity: 1; transform: translateX(0); }
-    .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal-right.visible { opacity: 1; transform: translateX(0); }
-
-    .delay-1 { transition-delay: 0.1s; }
-    .delay-2 { transition-delay: 0.2s; }
-    .delay-3 { transition-delay: 0.3s; }
-    .delay-4 { transition-delay: 0.4s; }
-
-    /* ── MOBILE ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    
     @media (max-width: 768px) {
-      nav { padding: 16px 20px; }
-      .nav-links { display: none; }
-      .nav-right .btn-outline { display: none; }
-
-      section { padding: 70px 20px; }
-      #map { padding: 60px 0 0; }
-
-      .steps-row {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-      .steps-row::before { display: none; }
-
-      .impact-inner {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .hero-title { font-size: 2.6rem; }
-
-      .map-wrapper iframe { height: 420px; }
-
-      .footer-bottom { flex-direction: column; align-items: center; }
-    }
-
-    @media (max-width: 480px) {
-      .stats-grid { grid-template-columns: 1fr; }
-      .features-grid { grid-template-columns: 1fr; }
+      .nav-links, .nav-right { display: none; }
+      nav { padding: 12px 24px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ── NAVIGATION ── -->
   <nav id="navbar">
     <a href="#hero" class="nav-logo">
-      <div class="nav-logo-icon">♻️</div>
-      <span class="nav-logo-text">ReEarth</span>
+      <img src="logo.jpg" alt="ReEarth Logo" class="logo-main">
     </a>
     <ul class="nav-links">
       <li><a href="#map">Map</a></li>
@@ -688,274 +168,87 @@
       <li><a href="#impact">Impact</a></li>
     </ul>
     <div class="nav-right">
-      <a href="#map" class="btn btn-outline">View Map</a>
+      <a href="#map" class="btn btn-outline">Find Bins</a>
     </div>
   </nav>
 
-  <!-- ── HERO ── -->
   <section id="hero">
     <div class="hero-bg"></div>
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-    <div class="deco-ring" style="width:600px;height:600px;top:-200px;right:-250px;"></div>
-    <div class="deco-ring" style="width:400px;height:400px;bottom:-100px;left:-150px;animation-delay:2s;"></div>
-
     <div class="hero-content">
+      <img src="logo.jpg" alt="ReEarth" class="logo-hero">
+      
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
         Perkiomen School Initiative
       </div>
+      
       <h1 class="hero-title">
-        ReEarth –<br/>Smart <span class="accent">Recycling</span><br/>for Schools
+        Bin it right,<br/>keep Earth <span style="color:var(--green-bright); font-style:italic;">bright.</span>
       </h1>
+      
       <p class="hero-subtitle">
-        Find bins. Recycle correctly. Track impact.<br/>
-        Making sustainability effortless on campus.
+        The smart campus recycling guide. Locate bins, track your footprint,<br/>and lead the way to a sustainable future.
       </p>
+      
       <div class="hero-cta">
-        <a href="#map" class="btn btn-primary btn-lg">
-          🗺️ View Map
-        </a>
-        <a href="#how" class="btn btn-outline btn-lg">
-          Learn More
-        </a>
+        <a href="#map" class="btn btn-primary btn-lg">🗺️ Launch Map</a>
+        <a href="#how" class="btn btn-outline btn-lg">Our Mission</a>
       </div>
-    </div>
-
-    <div class="hero-scroll-hint">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
     </div>
   </section>
 
-  <!-- ── MAP ── -->
   <section id="map">
-    <div class="map-header container reveal">
-      <span class="section-eyebrow">Interactive Campus Map</span>
-      <h2 class="section-title">Find Bins, Instantly</h2>
-      <p class="section-subtitle">
-        Locate recycling and trash bins across campus in real time. Tap any marker to see bin details.
-      </p>
+    <div class="container">
+      <span class="section-eyebrow">Real-Time Locator</span>
+      <h2 class="section-title">Campus Bin Map</h2>
+      <p style="color:var(--muted); max-width: 600px; margin: 0 auto;">Never wonder where to throw your recycling again. Our interactive map highlights every station on campus.</p>
     </div>
     <div class="map-wrapper">
-      <iframe
-        src="https://www.google.com/maps/d/embed?mid=1soH4Kwr1etC8wDS7NBXN-dt-vMC8RXI&ehbc=2E312F&noprof=1"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title="ReEarth Campus Bin Map"
-      ></iframe>
-    </div>
-    <div class="map-caption">
-      <div class="map-legend-item">
-        <div class="legend-dot" style="background:#40916c;"></div>
-        Recycling Bins
-      </div>
-      <div class="map-legend-item">
-        <div class="legend-dot" style="background:#888;"></div>
-        Trash Bins
-      </div>
-      <div class="map-legend-item">
-        <div class="legend-dot" style="background:#74c69d;"></div>
-        Compost Stations
-      </div>
-      <div class="map-legend-item" style="color:rgba(255,255,255,0.4); font-size:0.8rem;">
-        🏫 Perkiomen School Campus
-      </div>
+      <iframe src="about:blank" title="Map Placeholder"></iframe>
     </div>
   </section>
 
-  <!-- ── FEATURES ── -->
   <section id="features">
     <div class="container">
-      <div class="features-header reveal">
-        <span class="section-eyebrow">What We Offer</span>
-        <h2 class="section-title">Everything You Need to<br/>Recycle Smarter</h2>
-        <p class="section-subtitle">
-          ReEarth brings a suite of tools to make campus recycling intuitive, accurate, and impactful.
-        </p>
-      </div>
+      <span class="section-eyebrow">Smart Tools</span>
+      <h2 class="section-title">Everything You Need</h2>
       <div class="features-grid">
-        <div class="feature-card reveal delay-1">
-          <div class="feature-icon-wrap fi-green">📍</div>
-          <h3>Live Bin Locations</h3>
-          <p>Find the nearest recycling bin to you instantly. Our interactive campus map shows all recycling, trash, and compost points across every building.</p>
-          <span class="feature-tag">Always Updated</span>
+        <div class="feature-card">
+          <h3 style="margin-bottom:15px; font-family:'Fraunces';">📍 Live Locations</h3>
+          <p style="color:var(--muted); line-height:1.6;">Updated map showing every single recycling, compost, and waste bin across campus.</p>
         </div>
-        <div class="feature-card reveal delay-2">
-          <div class="feature-icon-wrap fi-teal">🧭</div>
-          <h3>Easy Navigation</h3>
-          <p>A clean, intuitive map interface built for students. No confusing menus — just tap, find, and go. Works on any device, anywhere on campus.</p>
-          <span class="feature-tag">Mobile Friendly</span>
+        <div class="feature-card">
+          <h3 style="margin-bottom:15px; font-family:'Fraunces';">📊 Impact Stats</h3>
+          <p style="color:var(--muted); line-height:1.6;">See how much the Perkiomen community has saved through proper sorting.</p>
         </div>
-        <div class="feature-card reveal delay-3">
-          <div class="feature-icon-wrap fi-lime">📊</div>
-          <h3>Smart Data Tracking</h3>
-          <p>Track recycling statistics weekly and monthly. Understand your school's environmental footprint and watch your impact grow over time.</p>
-          <span class="feature-tag">Coming Soon</span>
+        <div class="feature-card">
+          <h3 style="margin-bottom:15px; font-family:'Fraunces';">📱 Mobile First</h3>
+          <p style="color:var(--muted); line-height:1.6;">Designed to work perfectly on your phone while you're walking between classes.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── HOW IT WORKS ── -->
-  <section id="how">
-    <div class="container">
-      <div class="how-header reveal">
-        <span class="section-eyebrow">Simple Process</span>
-        <h2 class="section-title" style="color:var(--white);">Three Steps to<br/>a Greener Campus</h2>
-      </div>
-      <div class="steps-row">
-        <div class="step reveal delay-1">
-          <div class="step-num">1</div>
-          <div class="step-icon">🌐</div>
-          <h3>Open the Website</h3>
-          <p>Visit ReEarth on any browser or device. No downloads required — it works instantly from your phone or laptop.</p>
-        </div>
-        <div class="step reveal delay-2">
-          <div class="step-num">2</div>
-          <div class="step-icon">🗺️</div>
-          <h3>Find the Nearest Bin</h3>
-          <p>Use our interactive campus map to locate the closest recycling or compost station to your current location on campus.</p>
-        </div>
-        <div class="step reveal delay-3">
-          <div class="step-num">3</div>
-          <div class="step-icon">♻️</div>
-          <h3>Recycle Correctly</h3>
-          <p>Follow the bin labels and guidelines to sort your waste properly. Every correct sort reduces contamination and increases impact.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── IMPACT / STATS ── -->
-  <section id="impact">
-    <div class="container">
-      <div class="impact-inner">
-        <div class="impact-text reveal-left">
-          <span class="section-eyebrow">Campus Impact</span>
-          <h2 class="section-title">Measuring a<br/>Greener Tomorrow</h2>
-          <p class="section-subtitle">
-            ReEarth is building the tools to quantify and celebrate every act of recycling at Perkiomen School. AI-powered insights are on the way.
-          </p>
-          <br/>
-          <div class="coming-badge">
-            <span class="coming-badge-icon">🤖</span>
-            Coming Soon: AI-Powered Recycling Insights
-          </div>
-        </div>
-        <div class="stats-grid reveal-right">
-          <div class="stat-card sc-1">
-            <div class="stat-icon">📈</div>
-            <div class="stat-number">+30%</div>
-            <div class="stat-label">Recycling Rate Improvement</div>
-            <div class="stat-note">Example Projection</div>
-          </div>
-          <div class="stat-card sc-2">
-            <div class="stat-icon">🚫</div>
-            <div class="stat-number">↓ 40%</div>
-            <div class="stat-label">Reduced Contamination</div>
-            <div class="stat-note">Example Projection</div>
-          </div>
-          <div class="stat-card sc-3">
-            <div class="stat-icon">🗓️</div>
-            <div class="stat-number">52x</div>
-            <div class="stat-label">Weekly Tracking Data Points</div>
-            <div class="stat-note">Per Year</div>
-          </div>
-          <div class="stat-card sc-4">
-            <div class="stat-icon">🌱</div>
-            <div class="stat-number">100%</div>
-            <div class="stat-label">Student-Led Initiative</div>
-            <div class="stat-note">Perkiomen School</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── FOOTER ── -->
   <footer>
-    <div class="footer-inner">
-      <div class="footer-logo">
-        <div class="footer-logo-icon">♻️</div>
-        <span class="footer-logo-text">ReEarth</span>
-      </div>
-      <ul class="footer-nav">
-        <li><a href="#map">Map</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#how">How It Works</a></li>
-        <li><a href="#impact">Impact</a></li>
-      </ul>
+    <div class="container">
+      <img src="logo.jpg" alt="ReEarth" class="logo-footer">
+      
+      <p style="margin-top: 20px; opacity: 0.7; font-size: 0.9rem;">
+        Created by students at <strong>Perkiomen School</strong>
+      </p>
+      
       <div class="footer-divider"></div>
-      <div class="footer-bottom">
-        <p class="footer-credit">
-          <strong>ReEarth</strong> — Smart Recycling for Schools
-        </p>
-        <p class="footer-school">
-          🏫 Created by students at <span>Perkiomen School</span>
-        </p>
-      </div>
+      
+      <p style="font-size: 0.8rem; opacity: 0.5;">
+        &copy; 2026 ReEarth Initiative. All rights reserved.
+      </p>
     </div>
   </footer>
 
-  <!-- ── JS ── -->
   <script>
-    // Navbar scroll shadow
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 20);
-    });
-
-    // Scroll reveal
-    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    revealEls.forEach(el => observer.observe(el));
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-
-    // Stat counter animation
-    function animateCounter(el, target, suffix = '') {
-      let start = 0;
-      const duration = 1800;
-      const step = (timestamp) => {
-        if (!start) start = timestamp;
-        const progress = Math.min((timestamp - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const value = Math.round(eased * target);
-        el.textContent = (target > 0 ? '+' : '') + value + suffix;
-        if (progress < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    }
-
-    const statsObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          statsObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('.stat-card').forEach(card => {
-      statsObserver.observe(card);
     });
   </script>
 </body>
